@@ -1,0 +1,30 @@
+{
+  "name": "cookie-clicker-desktop",
+  "version": "1.0.0",
+  "description": "Cookie Clicker desktop application",
+  "main": "main.js",
+  "scripts": {
+    "start": "electron ."
+  },
+  "build": {
+    "appId": "com.cookieclicker.desktop",
+    "productName": "Cookie Clicker",
+    "files": [
+      "main.js",
+      "package.json",
+      "cookieclicker-gh-pages/**/*"
+    ],
+    "win": {
+      "target": [
+        {
+          "target": "nsis",
+          "arch": ["x64"]
+        }
+      ]
+    },
+    "nsis": {
+      "oneClick": false,
+      "allowToChangeInstallationDirectory": true
+    }
+  }
+}
