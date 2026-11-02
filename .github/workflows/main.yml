@@ -1,0 +1,40 @@
+name: Build Cookie Clicker
+
+on:
+  workflow_dispatch:
+  push:
+    branches:
+      - main
+
+jobs:
+  build:
+    runs-on: windows-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 22
+
+      - name: Extract Cookie Clicker
+        shell: pwsh
+        run: |
+          Expand-Archive `
+            -Path cookieclicker-gh-pages.zip `
+            -DestinationPath .
+
+      - name: Install build tools
+        run: npm install
+
+      - name: Build Windows installer
+        run: npx electron-builder --win nsis
+
+      - name: Upload installer
+        uses: actions/upload-artifact@v4
+        with:
+          name: Cookie-Clicker-Windows
+          path: dist/*.exe
+          if-no-files-found: error
