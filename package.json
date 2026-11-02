@@ -6,6 +6,10 @@
   "scripts": {
     "start": "electron ."
   },
+  "devDependencies": {
+  "electron": "*",
+  "electron-builder": "*"
+  },
   "build": {
     "appId": "com.cookieclicker.desktop",
     "productName": "Cookie Clicker",
